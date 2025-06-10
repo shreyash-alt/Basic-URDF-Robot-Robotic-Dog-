@@ -1,0 +1,221 @@
+<?xml version="1.0"?>
+<robot name="my_robot">
+    <material name="yellow">
+        <color rgba="1 1 0 1"/>
+    </material>
+    <material name="black">
+        <color rgba="0 0 0 1"/>
+    </material>  
+     <material name="white">
+        <color rgba="1 1 1 1"/>
+    </material>
+    <link name="base_link">
+        <visual>
+            <geometry>
+                <box size="1 0.4 0.2"/>
+            </geometry>
+            <origin xyz="0 0 0.1" rpy="0 0 0"/>
+            <material name="yellow"/>
+        </visual>
+    </link>
+    <link name="lidar">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.1"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <material name="white"/>
+        </visual>
+    </link>
+    <joint name="base_lidar_joint" type="continuous">
+        <parent link="base_link"/>
+        <child link="lidar"/>
+        <origin xyz="0 0 0.25" rpy="0 0 0"/>
+        <axis xyz="0 0 1"/>
+    </joint>
+    <link name="wheel1">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.05"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <material name="black"/>
+        </visual>
+    </link>   
+    <joint name="base_wheel1_joint" type="revolute">
+            <parent link="base_link"/>
+            <child link="wheel1"/>
+            <origin xyz="-0.4 -0.225 0" rpy="0 0 0"/>
+            <axis xyz="0 1 0"/>
+            <limit lower="-0.524" upper="1.047" effort="1.0" velocity="1.0"/>
+    </joint>
+
+    <link name="wheel2">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.05"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <material name="black"/>
+        </visual>
+    </link>   
+    <joint name="base_wheel2_joint" type="revolute">
+        <parent link="base_link"/>
+        <child link="wheel2"/>
+        <origin xyz="-0.4 0.225 0" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.524" upper="1.047" effort="1.0" velocity="1.0"/>
+    </joint>
+    <link name="wheel3">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.05"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <material name="black"/>
+        </visual>
+    </link>   
+    <joint name="base_wheel3_joint" type="revolute">
+        <parent link="base_link"/>
+        <child link="wheel3"/>
+        <origin xyz="0.4 -0.225 0" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.524" upper="1.047" effort="1.0" velocity="1.0"/>
+    </joint>
+    <link name="wheel4">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.05"/>
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0"/>
+            <material name="black"/>
+        </visual>
+    </link>   
+    <joint name="base_wheel4_joint" type="revolute">
+        <parent link="base_link"/>
+        <child link="wheel4"/>
+        <origin xyz="0.4 0.225 0" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-0.524" upper="1.047" effort="1.0" velocity="1.0"/>
+    </joint>
+    <link name="leg1">
+        <visual>
+            <geometry>
+                <box size="0.6 0.15 0.04"/>
+            </geometry>
+            <origin xyz="-0.3 -0.02 0" rpy="1.57 0 0"/>
+            <material name="yellow"/>
+        </visual>        
+    </link>
+    <joint name="wheel1_leg1_joint" type="fixed">
+        <parent link="wheel1"/>
+        <child link="leg1"/>
+        <origin xyz="0 -0.025 0" rpy="0 -0.523 0"/>
+    </joint>
+    <link name="leg2">
+        <visual>
+            <geometry>
+                <box size="0.6 0.15 0.04"/>
+            </geometry>
+            <origin xyz="-0.3 0.02 0" rpy="1.57 0 0"/>
+            <material name="yellow"/>
+        </visual>        
+    </link>
+    <joint name="wheel2_leg2_joint" type="fixed">
+        <parent link="wheel2"/>
+        <child link="leg2"/>
+        <origin xyz="0 0.025 0" rpy="0 -0.523 0"/>
+    </joint>
+    <link name="leg3">
+        <visual>
+            <geometry>
+                <box size="0.6 0.15 0.04"/>
+            </geometry>
+            <origin xyz="-0.3 -0.02 0" rpy="1.57 0 0"/>
+            <material name="yellow"/>
+        </visual>        
+    </link>
+    <joint name="wheel3_leg3_joint" type="fixed">
+        <parent link="wheel3"/>
+        <child link="leg3"/>
+        <origin xyz="0 -0.025 0" rpy="0 -0.523 0"/>
+    </joint>
+    <link name="leg4">
+        <visual>
+            <geometry>
+                <box size="0.6 0.15 0.04"/>
+            </geometry>
+            <origin xyz="-0.3 0.02 0" rpy="1.57 0 0"/>
+            <material name="yellow"/>
+        </visual>        
+    </link>
+    <joint name="wheel4_leg4_joint" type="fixed">
+        <parent link="wheel4"/>
+        <child link="leg4"/>
+        <origin xyz="0 0.025 0" rpy="0 -0.523 0"/>
+    </joint>
+    <link name="foot1">
+        <visual>
+            <geometry>
+                <cylinder radius="0.02" length="0.5"/>
+            </geometry>
+            <origin xyz="0 0 -0.25" rpy="0 0 0"/>
+            <material name="black"/>
+        </visual>
+    </link>
+    <joint name="leg1_foot1_joint" type="revolute">
+        <parent link="leg1"/>
+        <child link="foot1"/>
+        <origin xyz="-0.6 0.02 0" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-1.047" upper="1.047" effort="1.0" velocity="1.0"/>
+    </joint>
+    <link name="foot2">
+        <visual>
+            <geometry>
+                <cylinder radius="0.02" length="0.5"/>
+            </geometry>
+            <origin xyz="0 0 -0.25" rpy="0 0 0"/>
+            <material name="black"/>
+        </visual>
+    </link>
+    <joint name="leg2_foot2_joint" type="revolute">
+        <parent link="leg2"/>
+        <child link="foot2"/>
+        <origin xyz="-0.6 -0.02 0" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-1.047" upper="1.047" effort="1.0" velocity="1.0"/>
+    </joint>
+    <link name="foot3">
+        <visual>
+            <geometry>
+                <cylinder radius="0.02" length="0.5"/>
+            </geometry>
+            <origin xyz="0 0 -0.25" rpy="0 0 0"/>
+            <material name="black"/>
+        </visual>
+    </link>
+    <joint name="leg3_foot3_joint" type="revolute">
+        <parent link="leg3"/>
+        <child link="foot3"/>
+        <origin xyz="-0.6 0.02 0" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-1.047" upper="1.047" effort="1.0" velocity="1.0"/>
+    </joint>
+    <link name="foot4">
+        <visual>
+            <geometry>
+                <cylinder radius="0.02" length="0.5"/>
+            </geometry>
+            <origin xyz="0 0 -0.25" rpy="0 0 0"/>
+            <material name="black"/>
+        </visual>
+    </link>
+    <joint name="leg4_foot4_joint" type="revolute">
+        <parent link="leg4"/>
+        <child link="foot4"/>
+        <origin xyz="-0.6 -0.02 0" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit lower="-1.047" upper="1.047" effort="1.0" velocity="1.0"/>
+    </joint>
+</robot>
